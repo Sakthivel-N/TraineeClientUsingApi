@@ -1,0 +1,88 @@
+﻿@model IEnumerable<TraineeClientUsingApi.Models.TraineeDetail>
+
+@{
+    ViewData["Title"] = "NetTrainees";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h1>NetTrainees</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TraineeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TraineeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Interests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (item.Department.Equals(".NET"))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TraineeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TraineeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Interests)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BatchCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.ActionLink("AssignRole", "AssignRole", new { id=item.TraineeId }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.TraineeId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.TraineeId })
+                    </td>
+                </tr>
+
+            }
+
+        }
+    </tbody>
+</table>

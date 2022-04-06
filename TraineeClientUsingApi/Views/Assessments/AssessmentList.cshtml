@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TraineeClientUsingApi.Models.Assessment>
+
+@{
+    ViewData["Title"] = "AssessmentList";
+    Layout = "~/Views/Shared/_Assessment.cshtml";
+}
+
+<h1>AssessmentList</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssessmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssessmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssessmentStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentStatus)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.AssessmentId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.AssessmentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.AssessmentId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

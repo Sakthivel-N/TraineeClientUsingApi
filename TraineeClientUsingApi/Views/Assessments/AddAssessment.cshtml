@@ -1,0 +1,48 @@
+﻿@model TraineeClientUsingApi.Models.Assessment
+
+@{
+    ViewData["Title"] = "AddAssessment";
+    Layout = "~/Views/Shared/_Assessment.cshtml";
+}
+
+<h1>AddAssessment</h1>
+
+<h4>Assessment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddAssessment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="AssessmentName" class="control-label"></label>
+                <input asp-for="AssessmentName" class="form-control" />
+                <span asp-validation-for="AssessmentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainerName" class="control-label"></label>
+                <input asp-for="TrainerName" class="form-control" />
+                <span asp-validation-for="TrainerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchCode" class="control-label"></label>
+                <input asp-for="BatchCode" class="form-control" />
+                <span asp-validation-for="BatchCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-Controller="Assessments" asp-action="Index">Back to Assessment Page</a>
+</div>
+

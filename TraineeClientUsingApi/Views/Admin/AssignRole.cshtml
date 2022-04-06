@@ -1,0 +1,53 @@
+﻿@model TraineeClientUsingApi.Models.TraineeDetail
+
+@{
+    ViewData["Title"] = "AssignRolle";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h1>AssignRolle</h1>
+
+<h4>TraineeDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AssignRole">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Interests)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Interests)
+                </dd>
+            </dl>
+
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                <input asp-for="Department" class="form-control" />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchCode" class="control-label"></label>
+                <input asp-for="BatchCode" class="form-control" />
+                <span asp-validation-for="BatchCode" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" /><br />
+                <label style="color:Green;">@Html.Raw(ViewBag.Message)</label>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="TraineesList">Back to Trainees_List</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
