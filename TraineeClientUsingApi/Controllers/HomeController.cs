@@ -8,6 +8,7 @@ namespace TraineeClientUsingApi.Controllers
 
     public class HomeController : Controller
     {
+        
         public static string baseURL;
         private readonly IConfiguration _configuration;
         public HomeController(IConfiguration configuration)
@@ -25,6 +26,7 @@ namespace TraineeClientUsingApi.Controllers
         {
             if (HttpContext.Session.GetString("Email") != null)
             {
+                
                 ViewBag.Message = HttpContext.Session.GetString("Email");
                 return View();
             }
@@ -77,9 +79,7 @@ namespace TraineeClientUsingApi.Controllers
         {
             if (trainees.Email != null && trainees.Password != null)
             {
-                //HttpClientHandler clientHandler = new HttpClientHandler();
-                //clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
-
+                
                 TraineeDetail trainee = await GetValidTrainee(trainees.Email,trainees.Password);
                 if (trainee != null)
                 {
@@ -163,6 +163,7 @@ namespace TraineeClientUsingApi.Controllers
 
                     ViewBag.Message = "Login Successfully";
                     HttpContext.Session.SetString("Admin", admins.AdminName);
+                    
                     return RedirectToAction("Index","Admin");
 
                 }
@@ -190,17 +191,71 @@ namespace TraineeClientUsingApi.Controllers
                 {
                     HttpContext.Session.Remove("Admin");
                 }
+                HttpContext.Session.Remove("TraineeId");
                 HttpContext.Session.Remove("Email");
             }
             else if(HttpContext.Session.GetString("Admin") != null)
             {
                 if(HttpContext.Session.GetString("Email") != null)
                 {
+                    HttpContext.Session.Remove("TraineeId");
                     HttpContext.Session.Remove("Email");
                 }
                 HttpContext.Session.Remove("Admin");
             }
             return RedirectToAction("Index");
+        }
+        public async Task<List<AssessmentRecord>> GetRecords()
+        {
+
+            List<AssessmentRecord> received = new List<AssessmentRecord>();
+
+
+            using (var httpClient = new HttpClient())
+            {
+
+
+                using (var response = await httpClient.GetAsync(baseURL + "/api/AssessmentRecords"))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        received = JsonConvert.DeserializeObject<List<AssessmentRecord>>(apiResponse);
+                    }
+                    else
+                        ViewBag.StatusCode = response.StatusCode;
+                }
+
+            }
+            return (received);
+
+        }
+        public async Task<List<TraineeDetail>> GetTrainees()
+        {
+            List<TraineeDetail> trainee = new List<TraineeDetail>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(baseURL + "/api/TraineeDetails"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    trainee = JsonConvert.DeserializeObject<List<TraineeDetail>>(apiResponse);
+                }
+
+            }
+            return (trainee);
+
+        }
+        public async Task<IActionResult> MyScores()
+        {
+            ViewBag.EmailId = HttpContext.Session.GetString("Email");
+            List<TraineeDetail> traineelist = await GetTrainees();
+            TraineeDetail trainee = traineelist.FirstOrDefault(m=>m.Email==ViewBag.EmailId);
+            ViewBag.TraineeId = trainee.TraineeId;
+
+            List<AssessmentRecord> records = await GetRecords();
+            return View(records);
+
+
         }
         
 

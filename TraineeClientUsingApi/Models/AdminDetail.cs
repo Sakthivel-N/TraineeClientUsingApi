@@ -6,6 +6,7 @@ namespace TraineeClientUsingApi.Models
     {
         [Key]
         public int AdminId { get; set; }
+
         [Required, MaxLength(20)]
         public string AdminName { get; set; }
 

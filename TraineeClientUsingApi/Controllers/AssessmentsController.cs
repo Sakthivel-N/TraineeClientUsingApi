@@ -38,10 +38,10 @@ namespace TraineeClientUsingApi.Controllers
             return View();
         }
 
-
+        [HttpPost]
         public async Task<IActionResult> AddAssessment(Assessment assessment)
         {
-            assessment.AssessmentStatus = "On Progress";
+            assessment.AssessmentStatus = "OnProgress";
 
             Assessment received = new Assessment();
 
@@ -59,14 +59,13 @@ namespace TraineeClientUsingApi.Controllers
                     if (received != null)
                     {
                         ViewBag.Message = "Assessment Added Successfully";
-                        return View();
+                        return RedirectToAction("AssessmentList", "Assessments");
                     }
                 }
 
             }
             ViewBag.Message = "Failed to Add Assessment";
-            return View();
-
+            return RedirectToAction("AssessmentList");
 
         }
         public async Task<List<Assessment>> GetAssessments()
@@ -155,7 +154,7 @@ namespace TraineeClientUsingApi.Controllers
 
             }
 
-            return View();
+            return RedirectToAction("AssessmentList");
 
         }
 
@@ -182,7 +181,7 @@ namespace TraineeClientUsingApi.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Assessments");
+            return RedirectToAction("AssessmentList");
         }
 
 

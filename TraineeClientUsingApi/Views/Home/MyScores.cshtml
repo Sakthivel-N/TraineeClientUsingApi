@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TraineeClientUsingApi.Models.AssessmentRecord>
+
+@{
+    ViewData["Title"] = "MyScores";
+    Layout = "~/Views/Shared/_Trainee.cshtml";
+    int id = ViewBag.TraineeId;
+
+}
+
+<h1 style="text-align:center">MyScores </h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RecordId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssessmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TraineeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (item.TraineeId == id )
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RecordId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssessmentId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TraineeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marks)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remarks)
+                    </td>
+                    
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
