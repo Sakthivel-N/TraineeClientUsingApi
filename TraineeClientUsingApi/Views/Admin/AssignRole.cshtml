@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
-<h1>AssignRolle</h1>
+<h1>AssignRole</h1>
 
 <h4>TraineeDetail</h4>
 <hr />
@@ -14,6 +14,15 @@
         <form asp-action="AssignRole">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            
+             <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+            </dl>
             <dl class="row">
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Interests)
