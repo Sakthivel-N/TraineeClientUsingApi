@@ -13,15 +13,11 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RecordId)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.AssessmentId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TraineeId)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Marks)
             </th>
@@ -37,15 +33,11 @@
             @if (item.TraineeId == id )
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RecordId)
-                    </td>
+                    
                     <td>
                         @Html.DisplayFor(modelItem => item.AssessmentId)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TraineeId)
-                    </td>
+                    
                     <td>
                         @Html.DisplayFor(modelItem => item.Marks)
                     </td>

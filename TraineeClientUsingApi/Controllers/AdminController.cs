@@ -46,6 +46,7 @@ namespace TraineeClientUsingApi.Controllers
             List<TraineeDetail> trainee = await GetTrainees();
             return View(trainee);
         }
+        
 
         public async Task<IActionResult> AssignRole(int id)
         {
@@ -90,7 +91,7 @@ namespace TraineeClientUsingApi.Controllers
 
             }
 
-            return View();
+            return RedirectToAction("TraineesList");
 
         }
 
@@ -133,7 +134,7 @@ namespace TraineeClientUsingApi.Controllers
 
         }
 
-        
+
 
     }
 }

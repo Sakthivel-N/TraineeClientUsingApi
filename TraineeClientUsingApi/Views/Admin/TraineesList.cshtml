@@ -5,8 +5,7 @@
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
-<h1>AssignRole</h1>
-
+<h1>TraineesList</h1>
 
 <table class="table">
     <thead>
@@ -41,6 +40,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+    
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TraineeId)

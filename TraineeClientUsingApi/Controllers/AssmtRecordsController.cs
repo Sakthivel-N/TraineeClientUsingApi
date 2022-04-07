@@ -92,6 +92,7 @@ namespace TraineeClientUsingApi.Controllers
             List<TraineeDetail> received = await GetTrainees();
             return View(received);
         }
+        
 
         public IActionResult GiveScores(int id)
         {
